@@ -1,0 +1,56 @@
+free c: channel.
+
+type key.(*symmetric key*)
+type pkey.(*public key of B*)
+type skey. (*secret key of B*)
+type spkey.(*public key of A with signature*)
+type sskey.(*seecret key of A with signature*)
+
+(*rules of  messages*)
+fun k2b(key):bitstring [data,typeConverter].
+reduc forall k:key;b2k(k2b(k)) = k.
+
+(*rules of unsymmetric keys*)
+fun pk(skey): pkey.
+fun aenc(bitstring,pkey): bitstring.
+reduc forall x: bitstring,y: skey; adec(aenc(x,pk(y)),y) = x.
+
+(*rules of unsymmetric keys with signature*)
+fun spk(sskey): spkey.
+fun sign(bitstring,sskey): bitstring.
+reduc forall m: bitstring,k: sskey; checksign(sign(m,k),spk(k)) = m.
+
+(*rules of symmetric keys*)
+fun senc(bitstring,key): bitstring.
+reduc forall x: bitstring,y: key; sdec(senc(x,y),y) = x.
+
+
+(* Specification *)
+free s: bitstring [private].
+query attacker(s).
+ 
+(*  PA in 3rd version *)
+let PA(sskA: sskey,pkB:pkey) =
+    in(c, xpkB:pkey);
+    if xpkB = pkB then
+        new k:key;
+        out(c,aenc(sign(k2b(k),sskA),xpkB));
+        in(c, x:bitstring);
+        let z = sdec(x,k) in 0
+    else 0.
+ 
+
+let PB(skB:skey,spkA:spkey) =
+    in(c, y:bitstring);
+    let y1 = adec(y,skB) in
+    let xk = b2k(checksign(y1,spkA)) in
+    out(c,senc(s,xk)).
+
+process
+    new sskA: sskey;
+    new skB: skey;
+    let spkA = spk(sskA) in
+    let pkB = pk(skB) in
+    out(c,spkA);
+    out(c,pkB);
+    (!PA(sskA,pkB) |!PB(skB,spkA))

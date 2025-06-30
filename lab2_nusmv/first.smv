@@ -1,0 +1,36 @@
+MODULE main
+    VAR
+        p1: {n, t, c};
+        p2: {n, t, c};
+
+    ASSIGN
+        init(p1) := n;
+        init(p2) := n;
+
+        next(p1) := case
+            p1 = n & p2 = n : {n, t};   -- s0
+            p1 = t & p2 = n : {c, t};   -- s1
+            p1 = c & p2 = n : {c, n};   -- s2
+            p1 = t & p2 = t : {c, t};   -- s3
+            p1 = c & p2 = t : {n};      -- s4
+            p1 = n & p2 = t : {n, t};   -- s5
+            p1 = n & p2 = c : {n, t};   -- s6
+            p1 = t & p2 = c : {t};      -- s7
+            TRUE : {p1};             -- default case
+        esac;
+
+        next(p2) := case
+            (next(p1) = p1) & (p2 = n) : t;   -- s0>, s1>, s2>
+            (next(p1) = p1) & (p2 = t) & (p1 != c) : c;   -- s3>, s5>
+            (next(p1) = p1) & (p2 = c) : n;   -- s6>, s7>
+            TRUE : {p2};             -- default case
+        esac;
+
+    -- Safety
+    LTLSPEC G !(p1 = c & p2 = c)
+    -- Liveness
+    LTLSPEC G ((p1 = t -> F p1 = c) & (p2 = t -> F p2 = c))
+    -- Non-blocking
+    CTLSPEC AG ((p1 = n -> EF (p1 = t)) & (p2 = n -> EF (p2 = t)))
+    -- No strict sequencing
+    CTLSPEC EG ((p1=c -> EF (p1=c)) & (p2=c -> EF (p2=c)))
