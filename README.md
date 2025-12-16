@@ -6,3 +6,5 @@ Here places the lab files of  the course 形式化方法 of ustc，2025 spring. 
 4. Frama C
 5. Rocq
 6. Rocq-Board Game
+7. FINAL PROJECT 1: Deadlock Verification in Communication Protocols: SMV Modeling and State Space Reduction
+8. FINAL PROJECT 2: Formal Semantics and Verification of the Orc Language using the K Framework
