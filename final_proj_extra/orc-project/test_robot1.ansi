@@ -1,0 +1,1180 @@
+[31m<T>
+    [0m[31m<threads>
+        [0m[33m<thread>
+            [0m[37m<tid>
+                [0m0[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , bot.setObstacles ( < 1, 1 >, < 1
+                  , 5 >, < 2, 2 >, < 2, 4 >, < 2, 8 >, < 3, 7 >, < 3, 4 >, < 3
+                  , 5 >, < 4, 1 >, < 4, 4 >, < 4, 9 >, < 5, 7 >, < 7, 5 >, < 7
+                  , 7 >, < 8, 1 >, < 8, 2 >, < 8, 9 > ) > dummy_var > bot.init
+                   ( "yourCow", < 2, 0 >, < 0, 1 > ) > x > CarefulStep4Ever ( 
+                  x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0m.Map[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m-1[34m
+            </parentId>[0m
+            [35m<props>
+                [0m.Set[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m1[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0m.Map[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m0[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m2[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , bot.init ( "yourCow", < 2, 0 >, <
+                   0, 1 > ) > x > CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m0[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m3[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m2[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m4[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( x , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m2[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m5[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m4[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m6[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m4[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m7[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m6[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m15[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m6[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m16[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m15[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m26[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m15[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m27[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m26[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m35[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m26[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m36[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m35[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m46[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m35[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m47[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m46[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m55[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m46[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m56[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m55[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m66[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m55[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m67[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m66[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m75[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m66[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m76[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m75[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m84[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m75[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m85[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m84[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m93[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m84[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m94[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m93[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m104[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m93[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m105[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m104[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m113[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m104[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m114[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m113[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m122[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m113[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m123[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m122[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m131[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m122[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m132[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m131[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m140[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , CarefulStep4Ever ( x ) , 0 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m131[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m141[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( isBlocked , if ( isBlocked ) > dummy_var > (
+                  bot.rotateRight ( x ) | bot.rotateLeft ( x )) | ifNot ( 
+                  isBlocked ) > dummy_var > bot.stepFwd ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m140[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m142[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m141[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m143[37m
+            </tid>[0m
+            [32m<k>
+                [0mprllCompMgr ( 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                isBlocked |-> false
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m141[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m145[37m
+            </tid>[0m
+            [32m<k>
+                [0mseqCompMgr ( dummy_var , bot.stepFwd ( x ) , 1 )[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                isBlocked |-> false
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m143[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "prllChild" )
+                SetItem ( "publishUp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m147[37m
+            </tid>[0m
+            [32m<k>
+                [0m.K[32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                isBlocked |-> false
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m145[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "seqLeftExp" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m
+        [33m<thread>
+            [0m[37m<tid>
+                [0m148[37m
+            </tid>[0m
+            [32m<k>
+                [0mtimedHandle ( 2 , bot.stepFwd ( "yourCow" ) , botHandle )
+                  [32m
+            </k>[0m
+            [31m<context>
+                [0mdummy_var |-> signal
+                isBlocked |-> false
+                x |-> "yourCow"[31m
+            </context>[0m
+            [31m<publish>
+                [0m.List[31m
+            </publish>[0m
+            [34m<parentId>
+                [0m145[34m
+            </parentId>[0m
+            [35m<props>
+                [0mSetItem ( "publishUp" )
+                SetItem ( "seqRightExpInstance" )[35m
+            </props>[0m
+            [35m<varReqs>
+                [0m.List[35m
+            </varReqs>[0m[33m
+        </thread>[0m[31m
+    </threads>[0m
+    [34m<defs>
+        [0m[35m<def>
+            [0m[35m<defId>
+                [0mCarefulStep4Ever[35m
+            </defId>[0m
+            [33m<defParams>
+                [0mb, .Args[33m
+            </defParams>[0m
+            [33m<body>
+                [0mCarefulStep ( b ) > dummy_var > CarefulStep4Ever ( b )
+                  [33m
+            </body>[0m[35m
+        </def>[0m
+        [35m<def>
+            [0m[35m<defId>
+                [0mCarefulStep[35m
+            </defId>[0m
+            [33m<defParams>
+                [0mb, .Args[33m
+            </defParams>[0m
+            [33m<body>
+                [0mbot.scan ( x ) > isBlocked > (if ( isBlocked ) > dummy_var
+                   > (bot.rotateRight ( x ) | bot.rotateLeft ( x )) | ifNot ( 
+                  isBlocked ) > dummy_var > bot.stepFwd ( x ))[33m
+            </body>[0m[35m
+        </def>[0m
+        [35m<def>
+            [0m[35m<defId>
+                [0mChangeLane[35m
+            </defId>[0m
+            [33m<defParams>
+                [0mb, .Args[33m
+            </defParams>[0m
+            [33m<body>
+                [0mbot.rotateRight ( b ) > dummy_var > bot.stepFwd ( b ) > 
+                  dummy_var > bot.rotateLeft ( b ) | bot.rotateLeft ( b ) > 
+                  dummy_var > bot.stepFwd ( b ) > dummy_var > bot.rotateRight 
+                  ( b )[33m
+            </body>[0m[35m
+        </def>[0m
+        [35m<def>
+            [0m[35m<defId>
+                [0mSmartStep4Ever[35m
+            </defId>[0m
+            [33m<defParams>
+                [0mb, .Args[33m
+            </defParams>[0m
+            [33m<body>
+                [0mSmartStep ( b ) > dummy_var > SmartStep4Ever ( b )[33m
+            </body>[0m[35m
+        </def>[0m
+        [35m<def>
+            [0m[35m<defId>
+                [0mSmartStep[35m
+            </defId>[0m
+            [33m<defParams>
+                [0mb, .Args[33m
+            </defParams>[0m
+            [33m<body>
+                [0mbot.scan ( b ) > isBlocked > (ifNot ( isBlocked ) > 
+                  dummy_var > bot.stepFwd ( b ) | if ( isBlocked ) > dummy_var
+                   > ChangeLane ( b ))[33m
+            </body>[0m[35m
+        </def>[0m
+        [35m<def>
+            [0m[35m<defId>
+                [0mStepFwd4Ever[35m
+            </defId>[0m
+            [33m<defParams>
+                [0mb, .Args[33m
+            </defParams>[0m
+            [33m<body>
+                [0mbot.stepFwd ( b ) > dummy_var > StepFwd4Ever ( b )[33m
+            </body>[0m[35m
+        </def>[0m[34m
+    </defs>[0m
+    [33m<gPublish>
+        [0m.List[33m
+    </gPublish>[0m
+    [33m<gVars>
+        [0m"bot.map_obstacles" |-> 
+            ListItem ( 
+                ListItem ( 1 )
+                ListItem ( 1 ) )
+            ListItem ( 
+                ListItem ( 1 )
+                ListItem ( 5 ) )
+            ListItem ( 
+                ListItem ( 2 )
+                ListItem ( 2 ) )
+            ListItem ( 
+                ListItem ( 2 )
+                ListItem ( 4 ) )
+            ListItem ( 
+                ListItem ( 2 )
+                ListItem ( 8 ) )
+            ListItem ( 
+                ListItem ( 3 )
+                ListItem ( 7 ) )
+            ListItem ( 
+                ListItem ( 3 )
+                ListItem ( 4 ) )
+            ListItem ( 
+                ListItem ( 3 )
+                ListItem ( 5 ) )
+            ListItem ( 
+                ListItem ( 4 )
+                ListItem ( 1 ) )
+            ListItem ( 
+                ListItem ( 4 )
+                ListItem ( 4 ) )
+            ListItem ( 
+                ListItem ( 4 )
+                ListItem ( 9 ) )
+            ListItem ( 
+                ListItem ( 5 )
+                ListItem ( 7 ) )
+            ListItem ( 
+                ListItem ( 7 )
+                ListItem ( 5 ) )
+            ListItem ( 
+                ListItem ( 7 )
+                ListItem ( 7 ) )
+            ListItem ( 
+                ListItem ( 8 )
+                ListItem ( 1 ) )
+            ListItem ( 
+                ListItem ( 8 )
+                ListItem ( 2 ) )
+            ListItem ( 
+                ListItem ( 8 )
+                ListItem ( 9 ) )
+        "bot.map_size" |-> 
+            ListItem ( 10 )
+            ListItem ( 10 )
+        "bot.yourCow.block_indicator" |-> 
+            ListItem ( 0 )
+            ListItem ( 5 )
+        "bot.yourCow.bot_lock" |-> true
+        "bot.yourCow.direction" |-> 
+            ListItem ( 0 )
+            ListItem ( 1 )
+        "bot.yourCow.is_bumper_hit" |-> false
+        "bot.yourCow.is_facing_wall" |-> false
+        "bot.yourCow.position" |-> 
+            ListItem ( 0 )
+            ListItem ( 4 )
+        "count" |-> 0
+        "publishCount" |-> 47
+        "time.MTE" |-> 2
+        "time.clock" |-> 50
+        "time.limit.reached" |-> true
+        "time.ticked" |-> 0[33m
+    </gVars>[0m
+    [32m<in>
+        [0mListItem ( #buffer ( "" ) )
+        ListItem ( #istream ( 0 ) )[32m
+    </in>[0m
+    [33m<out>
+        [0mListItem ( #ostream ( 1 ) )
+        ListItem ( #buffer ( "" ) )[33m
+    </out>[0m
+    [31m<verbose>
+        [0mfalse[31m
+    </verbose>[0m[31m
+</T>[0m
