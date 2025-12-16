@@ -2,3 +2,6 @@ This is the 1st project of my final course work.
 
 通信协议中的死锁检验：SMV建模与状态空间约简
 Deadlock Verification in Communication Protocols: SMV Modeling and State Space Reduction
+
+In my conclusion part, I claimed that this system is a deadlock with no solution. But there is also someone claiming that they had found the solution. 
+So there might be problems within my proving process. 
