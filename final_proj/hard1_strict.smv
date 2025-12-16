@@ -1,0 +1,278 @@
+-- 1->3->5->7->9->11->13->15->1; 
+-- 3<->17; 7<->17; 11<->17; 15<->17;
+MODULE main
+    VAR
+    -- channels
+        c_1_3: {0, 1, 5, 9, 13};
+        c_3_5: {0, 1, 5, 9, 13};
+        c_5_7: {0, 1, 5, 9, 13};
+        c_7_9: {0, 1, 5, 9, 13};
+        c_9_11: {0, 1, 5, 9, 13};
+        c_11_13: {0, 1, 5, 9, 13};
+        c_13_15: {0, 1, 5, 9, 13};
+        c_15_1: {0, 1, 5, 9, 13};
+        cnorth: {0, 1, 5, 9, 13};
+        ceast: {0, 1, 5, 9, 13};
+        csouth: {0, 1, 5, 9, 13};
+        cwest: {0, 1, 5, 9, 13};
+    -- processes
+        pr1: process node11y(c_15_1, 1, c_1_3, {5, 9, 13});
+        pr3: process node111n(c_1_3, cnorth, 3, c_3_5);
+        pr5: process node11y(c_3_5, 5, c_5_7, {1, 9, 13});
+        pr7: process node111n(c_5_7, ceast, 7, c_7_9);
+        pr9: process node11y(c_7_9, 9, c_9_11, {1, 5, 13});
+        pr11: process node111n(c_9_11, csouth, 11, c_11_13);
+        pr13: process node11y(c_11_13, 13, c_13_15, {1, 5, 9});
+        pr15: process node111n(c_13_15, cwest, 15, c_15_1);
+        pr17: process centrum(cnorth, ceast, csouth, cwest, 17);
+    ASSIGN
+        -- initialize all channels to empty
+        init(c_1_3) := 0;
+        init(c_3_5) := 0;
+        init(c_5_7) := 0;
+        init(c_7_9) := 0;
+        init(c_9_11) := 0;
+        init(c_11_13) := 0;
+        init(c_13_15) := 0;
+        init(c_15_1) := 0;
+        init(cnorth) := 0;
+        init(ceast) := 0;
+        init(csouth) := 0;
+        init(cwest) := 0;
+    CTLSPEC
+        AG(!(
+            -- 可收发节点(1,5,9,13)阻塞：收不到正确消息且发送通道被占用
+            (c_15_1 != 1 & c_1_3 != 0) &
+            (c_3_5 != 5 & c_5_7 != 0) &
+            (c_7_9 != 9 & c_9_11 != 0) &
+            (c_11_13 != 13 & c_13_15 != 0) &
+
+            -- 二进二出不可收发节点(3,7,11,15)阻塞
+            -- 节点3阻塞：入边有消息但所需出边被占用，或所有通道为空
+            ((c_1_3 = 5 & c_3_5 != 0) | (c_1_3 = 9 & cnorth != 0) | (c_1_3 = 13 & cnorth != 0) |
+             (cnorth = 5 & c_3_5 != 0) | (c_1_3 = 0 & cnorth = 0 & c_3_5 = 0)) &
+
+            -- 节点7阻塞
+            ((c_5_7 = 9 & c_7_9 != 0) | (c_5_7 = 1 & ceast != 0) | (c_5_7 = 13 & ceast != 0) |
+             (ceast = 9 & c_7_9 != 0) | (c_5_7 = 0 & ceast = 0 & c_7_9 = 0)) &
+
+            -- 节点11阻塞
+            ((c_9_11 = 13 & c_11_13 != 0) | (c_9_11 = 1 & csouth != 0) | (c_9_11 = 5 & csouth != 0) |
+             (csouth = 13 & c_11_13 != 0) | (c_9_11 = 0 & csouth = 0 & c_11_13 = 0)) &
+
+            -- 节点15阻塞
+            ((c_13_15 = 1 & c_15_1 != 0) | (c_13_15 = 5 & cwest != 0) | (c_13_15 = 9 & cwest != 0) |
+             (cwest = 1 & c_15_1 != 0) | (c_13_15 = 0 & cwest = 0 & c_15_1 = 0)) &
+
+            -- 中心节点17阻塞：入边有消息但所需出边被占用，或所有通道为空
+            ((cnorth = 9 & ceast != 0) | (cnorth = 13 & csouth != 0) |
+             (ceast = 13 & csouth != 0) | (ceast = 1 & cwest != 0) |
+             (csouth = 5 & cnorth != 0) | (csouth = 1 & cwest != 0) |
+             (cwest = 5 & cnorth != 0) | (cwest = 9 & ceast != 0) |
+             (cnorth = 0 & ceast = 0 & csouth = 0 & cwest = 0))
+        ))
+
+MODULE node11y(c_in, id, c_out, mlist)
+    FAIRNESS running
+    VAR
+        st : {send, proc, recv};
+    ASSIGN
+        init(st) := {send, proc, recv};
+        next(st) := {send, proc, recv};
+        next(c_in) :=
+        case
+            (c_in = id & st = recv) : 0;
+            (c_in != 0 & c_in != id & c_out = 0 & st = proc) : 0;
+            TRUE : c_in;
+        esac;
+        next(c_out) :=
+        case
+            (c_out = 0 & st = send) : mlist;
+            (c_in != 0 & c_in != id & c_out = 0 & st = proc) : c_in;
+            TRUE : c_out;
+        esac;
+
+MODULE node111n(c_in, c_bi, id, c_out)
+    FAIRNESS running
+    VAR
+        active_channel: {none, from_c_in, from_c_bi};
+    
+    ASSIGN
+        init(active_channel) := none;
+        
+        -- 控制当前处理的通道
+        next(active_channel) := 
+        case
+            -- 从c_in接收消息
+            -- 节点3的路由逻辑 (c_in -> c_out/c_bi)
+            active_channel = none & c_in != 0 & id = 3 & 
+            ((c_in = 5 & c_out = 0) | 
+             ((c_in = 9 | c_in = 13) & c_bi = 0)) : from_c_in;
+            
+            -- 节点7的路由逻辑
+            active_channel = none & c_in != 0 & id = 7 & 
+            ((c_in = 9 & c_out = 0) | 
+             ((c_in = 1 | c_in = 13) & c_bi = 0)) : from_c_in;
+            
+            -- 节点11的路由逻辑
+            active_channel = none & c_in != 0 & id = 11 & 
+            ((c_in = 13 & c_out = 0) | 
+             ((c_in = 1 | c_in = 5) & c_bi = 0)) : from_c_in;
+            
+            -- 节点15的路由逻辑
+            active_channel = none & c_in != 0 & id = 15 & 
+            ((c_in = 1 & c_out = 0) | 
+             ((c_in = 5 | c_in = 9) & c_bi = 0)) : from_c_in;
+            
+            -- 从双向边接收的路由逻辑 (c_bi -> c_out)
+            -- 节点3的双向边逻辑
+            active_channel = none & c_bi = 5 & id = 3 & c_out = 0 : from_c_bi;
+            -- 节点7的双向边逻辑
+            active_channel = none & c_bi = 9 & id = 7 & c_out = 0 : from_c_bi;
+            -- 节点11的双向边逻辑
+            active_channel = none & c_bi = 13 & id = 11 & c_out = 0 : from_c_bi;
+            -- 节点15的双向边逻辑
+            active_channel = none & c_bi = 1 & id = 15 & c_out = 0 : from_c_bi;
+            
+            -- 处理完成后重置状态
+            active_channel != none & (c_out != 0 | c_bi != 0) : none;
+            
+            TRUE : active_channel;
+        esac;
+        
+        -- c_in的状态转移
+        next(c_in) :=
+        case
+            -- 从c_in读取消息并清空
+            active_channel = from_c_in : 0;
+            TRUE : c_in;
+        esac;
+        
+        -- c_bi的状态转移
+        next(c_bi) :=
+        case
+            -- 从c_bi读取消息并清空
+            active_channel = from_c_bi : 0;
+            
+            -- 节点3向c_bi写入非5的消息
+            active_channel = from_c_in & id = 3 & c_in != 5 & c_bi = 0 : c_in;
+            
+            -- 节点7向c_bi写入非9的消息
+            active_channel = from_c_in & id = 7 & c_in != 9 & c_bi = 0 : c_in;
+            
+            -- 节点11向c_bi写入非13的消息
+            active_channel = from_c_in & id = 11 & c_in != 13 & c_bi = 0 : c_in;
+            
+            -- 节点15向c_bi写入非1的消息
+            active_channel = from_c_in & id = 15 & c_in != 1 & c_bi = 0 : c_in;
+            
+            TRUE : c_bi;
+        esac;
+        
+        -- c_out的状态转移
+        next(c_out) :=
+        case
+            -- 节点3向c_out写入5
+            active_channel = from_c_in & id = 3 & c_in = 5 & c_out = 0 : 5;
+            
+            -- 节点7向c_out写入9
+            active_channel = from_c_in & id = 7 & c_in = 9 & c_out = 0 : 9;
+            
+            -- 节点11向c_out写入13
+            active_channel = from_c_in & id = 11 & c_in = 13 & c_out = 0 : 13;
+            
+            -- 节点15向c_out写入1
+            active_channel = from_c_in & id = 15 & c_in = 1 & c_out = 0 : 1;
+            
+            -- 从c_bi接收的消息直接转发到c_out
+            active_channel = from_c_bi & id = 3 & c_bi = 5 & c_out = 0 : c_bi;
+            active_channel = from_c_bi & id = 7 & c_bi = 9 & c_out = 0 : c_bi;
+            active_channel = from_c_bi & id = 11 & c_bi = 13 & c_out = 0 : c_bi;
+            active_channel = from_c_bi & id = 15 & c_bi = 1 & c_out = 0 : c_bi;
+            
+            TRUE : c_out;
+        esac;
+
+MODULE centrum(c_north, c_east, c_south, c_west, id)
+    FAIRNESS running
+    VAR
+        -- 记录当前处理哪个方向的输入
+        active_input: {none, north, east, south, west};
+    
+    ASSIGN
+        init(active_input) := none;
+        
+        -- 选择处理哪个输入通道
+        next(active_input) := 
+        case
+            -- 只有当前没有活动处理且某个输入通道有消息时才选择新的输入
+            active_input = none & c_north != 0 : north;
+            active_input = none & c_east != 0 : east;
+            active_input = none & c_south != 0 : south;
+            active_input = none & c_west != 0 : west;
+            
+            -- 完成处理后重置
+            active_input != none & 
+            ((active_input = north & c_north = 0) | 
+             (active_input = east & c_east = 0) |
+             (active_input = south & c_south = 0) |
+             (active_input = west & c_west = 0)) : none;
+             
+            TRUE : active_input;
+        esac;
+        
+        -- 北向通道(链接节点3)
+        next(c_north) :=
+        case
+            -- 处理来自北向的消息
+            active_input = north : 0;
+            
+            -- 转发到北向的消息
+            -- 节点5在北边 
+            (active_input = south & c_south = 5) |
+            (active_input = west & c_west = 5) : 5;
+            
+            TRUE : c_north;
+        esac;
+        
+        -- 东向通道(链接节点7)
+        next(c_east) :=
+        case
+            -- 处理来自东向的消息
+            active_input = east : 0;
+            
+            -- 转发到东向的消息
+            -- 节点9在东边
+            (active_input = north & c_north = 9) | 
+            (active_input = west & c_west = 9) : 9;
+            
+            TRUE : c_east;
+        esac;
+        
+        -- 南向通道(链接节点11)
+        next(c_south) :=
+        case
+            -- 处理来自南向的消息
+            active_input = south : 0;
+            
+            -- 转发到南向的消息
+            -- 节点13在南边
+            (active_input = north & c_north = 13) | 
+            (active_input = east & c_east = 13) : 13;
+            
+            TRUE : c_south;
+        esac;
+        
+        -- 西向通道(链接节点15)
+        next(c_west) :=
+        case
+            -- 处理来自西向的消息
+            active_input = west : 0;
+            
+            -- 转发到西向的消息
+            -- 节点1在西边
+            (active_input = east & c_east = 1) |
+            (active_input = south & c_south = 1) : 1;
+            
+            TRUE : c_west;
+        esac;

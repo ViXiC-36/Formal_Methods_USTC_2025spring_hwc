@@ -1,0 +1,50 @@
+MODULE main
+    VAR
+        c1: 0..4;
+        c2: 0..4;
+        c3: 0..4;
+        c4: 0..4;
+        -- 不允许给4发送消息
+        -- M = {1, 2, 3}
+        -- c_in, id, c_out, 可发的信息, send权限
+        pr1: process node(c4, 1, c1, {2, 3}, TRUE);
+        pr2: process node(c1, 2, c2, {1, 3}, TRUE);
+        pr3: process node(c2, 3, c3, {2, 1}, TRUE);
+        pr4: process node(c3, 4, c4, {2, 3, 1}, FALSE);
+    ASSIGN
+        -- 初始化所有信道为空
+        init(c1) := 0;
+        init(c2) := 0;
+        init(c3) := 0;
+        init(c4) := 0;
+    CTLSPEC
+        -- 在所有情况下都不可能出现所有信道均不为空,
+        -- 并且所有节点都无法receive信息
+        AG(!(c1!=0&c1!=2&c2!=0&c2!=3&c3!=0&c4!=0&c4!=1))
+
+MODULE node(c_in, id, c_out, mlist, allow)
+    FAIRNESS running
+    VAR
+        st : {send, proc, recv};
+    ASSIGN
+        -- 一个节点状态可以是send或者process或者receive
+        init(st) := {send, proc, recv};
+        next(st) := {send, proc, recv};
+        next(c_in) :=
+        case
+            -- in信道上是自己，可以接收，然后置空
+            (c_in = id & st = recv) : 0;
+            -- 如果当前状态为process状态，并且有信息可以转发，则进行转发，将c_in设为空
+            (c_in != 0 & c_in != id & c_out = 0 & st = proc) : 0;
+            -- 否则保持c_in不变
+            TRUE : c_in;
+        esac;
+        next(c_out) :=
+        case
+            -- 如果当前状态为send，则随机向一个node发送一条信息
+            (c_out = 0 & allow = TRUE & st = send) : mlist;
+            -- 如果当前状态为process状态，并且有信息可以转发，则让c_out = c_in
+            (c_in != 0 & c_in != id & c_out = 0 & st = proc) : c_in;
+            -- 否则保持c_out不变
+            TRUE : c_out;
+        esac;

@@ -1,0 +1,170 @@
+MODULE main
+    VAR
+    -- 定义每个channel可以传送的信息范围
+        c_2_3: {0, 2, 4, 6};
+        c_3_4: {0, 2, 4, 6};
+        c_4_6: {0, 2, 4, 6};
+        c_6_7: {0, 2, 4, 6};
+        c_7_17: {0, 2, 4, 6};
+        c_17_3: {0, 2, 4, 6};
+        c_17_15: {0, 2, 4, 6};
+        c_15_16: {0, 2, 4, 6};
+        c_16_2: {0, 2, 4, 6};
+    -- 定义每个process转发
+        -- 一进一出可收发
+        pr2: process node11y(c_16_2, 2, c_2_3, {4, 6});
+        pr4: process node11y(c_3_4, 4, c_4_6, {2, 6});
+        pr6: process node11y(c_4_6, 6, c_6_7, {2, 4});
+        -- 一进一出不可收发
+        pr7: process node11n(c_6_7, 7, c_7_17);
+        pr15: process node11n(c_17_15, 15, c_15_16);
+        pr16: process node11n(c_15_16, 16, c_16_2);
+        -- 二进一出不可收发
+        pr3: process node21n(c_2_3, c_17_3, 3, c_3_4);
+        -- 一进二出不可收发
+        pr17: process node12n(c_7_17, 17, c_17_15, c_17_3);
+    ASSIGN
+        -- 初始化每个channel为0(empty)
+        init(c_2_3) := 0;
+        init(c_3_4) := 0;
+        init(c_4_6) := 0;
+        init(c_6_7) := 0;
+        init(c_7_17) := 0;
+        init(c_17_3) := 0;
+        init(c_17_15) := 0;
+        init(c_15_16) := 0;
+        init(c_16_2) := 0;
+    CTLSPEC
+        AG(!(
+            -- 可收发节点(2,4,6)阻塞：收不到正确消息且发送通道被占用
+            (c_2_3 != 0 & c_16_2 != 2) &
+            (c_4_6 != 0 & c_3_4 != 4) &
+            (c_6_7 != 0 & c_4_6 != 6) &
+
+            -- 一进一出不可收发节点(7,15,16)阻塞：要么入出通道都非空，要么都为空
+            ((c_6_7 != 0 & c_7_17 != 0) | (c_6_7 = 0 & c_7_17 = 0)) &
+            ((c_17_15 != 0 & c_15_16 != 0) | (c_17_15 = 0 & c_15_16 = 0)) &
+            ((c_15_16 != 0 & c_16_2 != 0) | (c_15_16 = 0 & c_16_2 = 0)) &
+
+            -- 二进一出不可收发节点(3)阻塞：要么出边被占用且至少一个入边有消息，要么所有通道都空
+            ((c_3_4 != 0 & (c_2_3 != 0 | c_17_3 != 0)) | (c_2_3 = 0 & c_17_3 = 0 & c_3_4 = 0)) &
+
+            -- 一进二出不可收发节点(17)阻塞：要么入边有消息且其所需出边被占用，要么所有通道都空
+            (((c_7_17 = 2 & c_17_15 != 0) | (c_7_17 = 4 & c_17_3 != 0)) | (c_7_17 = 0 & c_17_15 = 0 & c_17_3 = 0))
+        ))
+
+MODULE node11y(c_in, id, c_out, mlist)
+    FAIRNESS running
+    VAR
+        st : {send, proc, recv};
+    ASSIGN
+        init(st) := {send, proc, recv};
+        next(st) := {send, proc, recv};
+        next(c_in) :=
+        case
+            -- receive
+            (c_in = id & st = recv) : 0;
+            -- process
+            (c_in != 0 & c_in != id & c_out = 0 & st = proc) : 0;
+            -- idle
+            TRUE : c_in;
+        esac;
+        next(c_out) :=
+        case
+            -- send
+            (c_out = 0 & st = send) : mlist;
+            -- process
+            (c_in != 0 & c_in != id & c_out = 0 & st = proc) : c_in;
+            -- idle
+            TRUE : c_out;
+        esac;
+
+MODULE node11n(c_in, id, c_out)
+    FAIRNESS running
+    ASSIGN
+        next(c_in) :=
+        case
+            -- process only
+            (c_in != 0 & c_out = 0) : 0;
+            -- idle
+            TRUE : c_in;
+        esac;
+        next(c_out) :=
+        case
+            -- process only
+            (c_in != 0 & c_out = 0) : c_in;
+            -- idle
+            TRUE : c_out;
+        esac;
+
+MODULE node21n(c_in1, c_in2, id, c_out)
+    FAIRNESS running
+    VAR
+        -- 添加状态变量跟踪正在处理的通道
+        active_channel: {none, from_c_in1, from_c_in2};
+    
+    ASSIGN
+        init(active_channel) := none;
+        
+        -- 控制当前处理哪个通道
+        next(active_channel) := 
+        case
+            -- 如果输出通道空闲，选择一个有效消息的输入通道处理
+            active_channel = none & c_out = 0 & (c_in1 = 4 | c_in1 = 6): from_c_in1;
+            active_channel = none & c_out = 0 & c_in2 = 4: from_c_in2;
+            -- 处理完后重置状态
+            active_channel != none & c_out != 0: none;
+            TRUE: active_channel;
+        esac;
+        
+        -- c_in1的状态转移规则
+        next(c_in1) :=
+        case
+            -- 只有当选择处理c_in1时才清空它
+            active_channel = from_c_in1 & (c_in1 = 4 | c_in1 = 6) & c_out = 0: 0;
+            TRUE: c_in1;
+        esac;
+        
+        -- c_in2的状态转移规则
+        next(c_in2) :=
+        case
+            -- 只有当选择处理c_in2时才清空它
+            active_channel = from_c_in2 & c_in2 = 4 & c_out = 0: 0;
+            TRUE: c_in2;
+        esac;
+        
+        -- c_out的状态转移规则
+        next(c_out) :=
+        case
+            -- 根据选择的活动通道设置输出
+            active_channel = from_c_in1 & (c_in1 = 4 | c_in1 = 6) & c_out = 0: c_in1;
+            active_channel = from_c_in2 & c_in2 = 4 & c_out = 0: c_in2;
+            TRUE: c_out;
+        esac;
+
+MODULE node12n(c_in, id, c_out1, c_out2)
+    FAIRNESS running
+    ASSIGN
+        next(c_in) :=
+        case
+            -- 4->2或6->2
+            (c_in = 2 & c_out1 = 0) : 0;
+            -- 6->4
+            (c_in = 4 & c_out2 = 0) : 0;
+            -- idle
+            TRUE : c_in;
+        esac;
+        next(c_out1) :=
+        case
+            -- process only
+            (c_in = 2 & c_out1 = 0) : c_in;
+            -- idle
+            TRUE : c_out1;
+        esac;
+        next(c_out2) :=
+        case
+            -- process only
+            (c_in = 4 & c_out2 = 0) : c_in;
+            -- idle
+            TRUE : c_out2;
+        esac;
