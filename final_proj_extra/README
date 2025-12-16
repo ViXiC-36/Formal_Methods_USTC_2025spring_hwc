@@ -1,0 +1,14 @@
+ This is an extra project of my final course work for 'Formal Methods', completed based on the paper "[Towards Formal
+  Verification of Orchestration Computations Using the K Framework](https://doi.org/10.1007/978-3-319-19249-9_4)" (FME
+  2015).
+
+  In this project, I defined a formal, executable semantics for the Orc orchestration language using the K framework.
+  The model captures Orc's core concurrent combinators: Parallel (|), Sequential (>x>), Pruning (<x<), and Otherwise
+  (;).
+
+  To demonstrate and verify the semantic model, a case study involving a robot navigating a maze with obstacles is
+  included (test/test_robot1.orc). The simulation shows the robot's step-by-step movements and state changes as governed
+  by the Orc program and the K rules.
+
+  > Note: The entire environment is containerized using Docker, as this project relies on a legacy version of the K
+  framework (v3.5.2) to stay consistent with the original paper. See the Dockerfile for details.
